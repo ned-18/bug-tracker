@@ -1,0 +1,31 @@
+<div class="p-grid p-col-12 p-mt-6">
+  <button
+    pButton
+    (click)="showCreateModal()"
+    type="button"
+    label="Add new project"
+    icon="pi pi-plus"
+    class="p-button-lg p-col-6 p-offset-3 p-mb-6"
+    *ngIf="role !== 'BASIC'"
+  ></button>
+  <h1 class="p-col-12 bt-h1" *ngIf="role === 'BASIC'">Your projects</h1>
+  <p
+    class="p-col-12 p-text-center p-text-bold p-mt-1"
+    *ngIf="projects.length === 0 && !isLoading && role !== 'BASIC'"
+  >
+    You don't have project yet. You can add them by clicking button above.
+  </p>
+  <app-projects
+    *ngIf="projects && !isLoading"
+    [projects]="projects"
+    class="p-mt-6"
+    (updateProjects)="updateProjects()"
+  ></app-projects>
+  <p-progressSpinner
+    *ngIf="isLoading"
+    class="p-col-12 p-text-center p-mt-6"
+    styleClass="bt-spinner"
+    strokeWidth="4"
+    animationDuration="1s"
+  ></p-progressSpinner>
+</div>

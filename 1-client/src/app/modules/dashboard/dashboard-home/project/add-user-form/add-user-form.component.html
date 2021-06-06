@@ -1,0 +1,54 @@
+<form
+  [formGroup]="addUserForm"
+  (ngSubmit)="onSubmit()"
+  class="p-fluid p-grid p-col-12 p-xl-6 p-xl-offset-3"
+>
+  <div class="p-col p-offset-11 p-mt-3">
+    <button
+      pButton
+      pRipple
+      type="button"
+      (click)="closeDialog()"
+      icon="pi pi-times"
+      class="p-button-rounded p-button-primary p-button-text"
+    ></button>
+  </div>
+
+  <h2 class="p-col-12">Add User to Project</h2>
+  <div class="p-field p-col-12">
+    <h5>Enter your email</h5>
+    <input type="text" pInputText formControlName="emailFrom" maxlength="30" />
+    <app-input-errors
+      [control]="addUserForm.get('emailFrom')"
+      label="Email"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-col-12">
+    <h5>Enter users email</h5>
+    <input type="text" pInputText formControlName="emailTo" maxlength="30" />
+    <app-input-errors
+      [control]="addUserForm.get('emailTo')"
+      label="Email"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-col-12 p-d-flex">
+    <button
+      pButton
+      type="submit"
+      [loading]="isLoading"
+      [disabled]="addUserForm.invalid"
+      label="Send Invitation"
+      icon="pi pi-check"
+      class="p-button-lg p-mr-2"
+    ></button>
+    <button
+      pButton
+      (click)="closeDialog()"
+      type="button"
+      label="Close"
+      class="p-button-outlined p-button-lg p-ml-2"
+    ></button>
+  </div>
+</form>

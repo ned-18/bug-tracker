@@ -1,0 +1,130 @@
+<form
+  [formGroup]="signupForm"
+  (ngSubmit)="onSignupFormSubmit()"
+  class="p-fluid p-grid p-sm-8 p-sm-offset-2 p-md-6 p-md-offset-3"
+>
+  <app-header class="p-mb-6 p-col-12"></app-header>
+  <div class="p-field p-mb-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-user"></i>
+      <input
+        type="text"
+        id="username"
+        pInputText
+        formControlName="username"
+        maxlength="30"
+        (input)="isUsernameExists = null"
+      />
+      <label for="username">Username</label>
+    </span>
+    <app-input-errors
+      [control]="signupForm.get('username')"
+      label="Username"
+      [existingField]="isUsernameExists"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-mb-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-envelope"></i>
+      <input
+        type="text"
+        id="email"
+        pInputText
+        formControlName="email"
+        maxlength="30"
+        (input)="isEmailExists = null"
+      />
+      <label for="email">Email</label>
+    </span>
+    <app-input-errors
+      [control]="signupForm.get('email')"
+      label="Email"
+      [existingField]="isEmailExists"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-mb-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-key"></i>
+      <input
+        type="password"
+        id="password"
+        pInputText
+        formControlName="password"
+        maxlength="30"
+      />
+      <label for="password">Password</label>
+    </span>
+    <app-input-errors
+      [control]="signupForm.get('password')"
+      label="Password"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-mb-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-key"></i>
+      <input
+        type="password"
+        id="confirmPassword"
+        pInputText
+        formControlName="confirmPassword"
+        maxlength="30"
+      />
+      <label for="confirmPassword">Confirm Password</label>
+    </span>
+    <app-input-errors
+      [control]="signupForm.get('confirmPassword')"
+      label="Confirm Password"
+    ></app-input-errors>
+  </div>
+
+  <div
+    class="p-field p-col-12 p-error"
+    *ngIf="
+      signupForm.errors &&
+      (signupForm.get('password').touched ||
+        signupForm.get('confirmPassword').touched)
+    "
+  >
+    <span *ngIf="signupForm.errors.passwordsDontMatch"
+      >Passwords must match!</span
+    >
+  </div>
+
+  <div class="p-field p-mb-1 p-col-12">
+    <button
+      icon="pi pi-lock"
+      iconPos="left"
+      pButton
+      type="submit"
+      label="Register"
+      class="p-button-help"
+      [disabled]="!signupForm.valid"
+    ></button>
+  </div>
+  <div class="p-field p-col-12 p-text-center">
+    <p>
+      Have an account?
+      <a class="bt-link" routerLink="/">Sign in</a>
+    </p>
+  </div>
+</form>
+
+<div class="p-fluid p-grid p-sm-8 p-sm-offset-2 p-md-6 p-md-offset-3">
+  <p-panel
+    class="p-col-12"
+    header="Password policy"
+    [toggleable]="true"
+    [collapsed]="true"
+  >
+    <ul class="bt-list">
+      <li>Length must be greater than or equal to 8</li>
+      <li>One or more uppercase characters</li>
+      <li>One or more lowercase characters</li>
+      <li>One or more numeric values</li>
+      <li>One or more special characters (!, %, #, etc)</li>
+    </ul>
+  </p-panel>
+</div>

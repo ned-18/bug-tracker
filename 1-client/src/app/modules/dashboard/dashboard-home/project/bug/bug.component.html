@@ -1,0 +1,40 @@
+<div *ngIf="bug">
+  <div class="p-d-flex p-jc-between p-ai-center p-my-4">
+    <p class="bt-header--date">
+      Created: <span>{{ bug.createdAt | date }}</span>
+    </p>
+    <button
+      pButton
+      pRipple
+      type="button"
+      (click)="closeDialog()"
+      icon="pi pi-times"
+      class="p-button-rounded p-button-primary p-button-text"
+    ></button>
+  </div>
+  <div class="bt-divider"></div>
+  <div class="p-d-flex p-jc-between p-ai-center" style="margin-top: 2rem">
+    <h2 style="margin: 0">{{ bug.name }}</h2>
+    <span [class]="'project-badge priority-' + bug.priority.toLowerCase()">{{
+      bug.priority
+    }}</span>
+  </div>
+  <h3 class="p-text-light bt-subheader">
+    Assigned To:
+    <span *ngFor="let user of bug.assignTo" class="bt-user">{{ user }}</span>
+  </h3>
+  <div class="p-my-6">
+    <h3>Description:</h3>
+    <p>{{ bug.description }}</p>
+  </div>
+  <span class="p-buttonset">
+    <button pButton pRipple label="Comment" icon="pi pi-comment"></button>
+    <button
+      pButton
+      pRipple
+      label="Close"
+      icon="pi pi-times"
+      (click)="closeDialog()"
+    ></button>
+  </span>
+</div>

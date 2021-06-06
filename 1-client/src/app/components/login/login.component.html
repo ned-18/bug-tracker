@@ -1,0 +1,65 @@
+<form
+  [formGroup]="loginForm"
+  (ngSubmit)="onLoginFormSubmit()"
+  class="p-fluid p-grid p-sm-8 p-sm-offset-2 p-md-6 p-md-offset-3"
+>
+  <app-header class="p-mt-2 p-mb-6 p-col-12"></app-header>
+
+  <div class="p-field p-mb-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-user"></i>
+      <input
+        type="text"
+        id="username"
+        pInputText
+        formControlName="username"
+        maxlength="30"
+      />
+      <label for="username">Username</label>
+    </span>
+    <app-input-errors
+      [control]="loginForm.get('username')"
+      label="Username"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-mb-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-key"></i>
+      <input
+        type="password"
+        id="password"
+        pInputText
+        formControlName="password"
+        maxlength="30"
+      />
+      <label for="password">Password</label>
+    </span>
+    <app-input-errors
+      [control]="loginForm.get('password')"
+      label="Password"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-mb-1 p-col-12">
+    <button
+      icon="pi pi-lock-open"
+      iconPos="left"
+      pButton
+      type="submit"
+      label="Login"
+      class="p-button-help"
+      [disabled]="!loginForm.valid"
+    ></button>
+  </div>
+  <div class="p-field p-col-12 p-text-center">
+    <p>
+      or
+      <a href="#" class="bt-link">Forgot Password</a>
+    </p>
+    <p>
+      Don't have an account?
+      <a class="bt-link" routerLink="/signup">Sign up</a>
+    </p>
+  </div>
+</form>

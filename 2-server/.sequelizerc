@@ -1,0 +1,11 @@
+'use strict'
+
+const path = require('path')
+const serviceConfig = require('./config')
+
+module.exports = {
+	'migrations-path': path.resolve(__dirname, 'db/migrations'),
+	'models-path': path.resolve(__dirname, 'db/models'),
+  config: __filename,
+  url: serviceConfig.DATABASE_URL
+}

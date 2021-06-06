@@ -1,0 +1,30 @@
+<ng-container *ngIf="project">
+  <div class="p-col-12 p-d-flex p-jc-between p-ai-center">
+    <h1>{{ project.name }}</h1>
+    <button
+      pButton
+      pRipple
+      type="button"
+      title="Add people"
+      icon="pi pi-user-plus"
+      (click)="showUserModal()"
+      class="p-button-rounded p-button-primary p-button-outlined"
+      *ngIf="role === 'PROJECT_MANAGER'"
+    ></button>
+  </div>
+  <p class="p-col-12 p-text-justify">{{ project.description }}</p>
+
+  <p-panel
+    class="p-col-12"
+    header="People on project"
+    [toggleable]="true"
+    [collapsed]="true"
+  >
+    <ul style="list-style: none">
+      <li *ngFor="let user of project.users">
+        <i class="pi pi-user" style="color: #673ab7"></i
+        ><span class="p-ml-3">{{ user }}</span>
+      </li>
+    </ul>
+  </p-panel>
+</ng-container>

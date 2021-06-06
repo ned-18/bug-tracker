@@ -1,0 +1,138 @@
+<form
+  [formGroup]="profileForm"
+  (ngSubmit)="onSubmit()"
+  class="p-fluid p-grid p-sm-8 p-sm-offset-2 p-md-6 p-md-offset-3"
+>
+  <h1 class="p-col-12" style="margin: 1rem 0 0 0">
+    Hello, {{ username || "user" }}
+  </h1>
+  <h3 class="p-col-12" style="margin: 1rem 0">Welcome to your account</h3>
+  <div class="p-field p-mb-5 p-mt-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-id-card"></i>
+      <input
+        type="text"
+        id="firstName"
+        pInputText
+        formControlName="firstName"
+        maxlength="30"
+      />
+      <label for="firstName">First Name</label>
+    </span>
+  </div>
+
+  <div class="p-field p-mb-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-id-card"></i>
+      <input
+        type="text"
+        id="lastName"
+        pInputText
+        formControlName="lastName"
+        maxlength="30"
+      />
+      <label for="lastName">Last Name</label>
+    </span>
+  </div>
+
+  <div class="p-field p-mb-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-user"></i>
+      <input
+        type="text"
+        id="username"
+        pInputText
+        formControlName="username"
+        maxlength="30"
+        (input)="isUsernameExists = null"
+      />
+      <label for="username">Username</label>
+    </span>
+    <app-input-errors
+      [control]="profileForm.get('username')"
+      label="Username"
+      [existingField]="isUsernameExists"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-mb-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-envelope"></i>
+      <input
+        type="text"
+        id="email"
+        pInputText
+        formControlName="email"
+        maxlength="30"
+        (input)="isEmailExists = null"
+      />
+      <label for="email">Email</label>
+    </span>
+    <app-input-errors
+      [control]="profileForm.get('email')"
+      label="Email"
+      [existingField]="isEmailExists"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-mb-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-key"></i>
+      <input
+        type="password"
+        id="password"
+        pInputText
+        formControlName="password"
+        maxlength="30"
+      />
+      <label for="password">Password</label>
+    </span>
+    <app-input-errors
+      [control]="profileForm.get('password')"
+      label="Password"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-mb-5 p-pb-4 p-col-12">
+    <span class="p-float-label p-input-icon-left p-input-filled">
+      <i class="pi pi-key"></i>
+      <input
+        type="password"
+        id="confirmPassword"
+        pInputText
+        formControlName="confirmPassword"
+        maxlength="30"
+      />
+      <label for="confirmPassword">Confirm Password</label>
+    </span>
+    <app-input-errors
+      [control]="profileForm.get('confirmPassword')"
+      label="Confirm Password"
+    ></app-input-errors>
+  </div>
+
+  <div
+    class="p-field p-col-12 p-error"
+    *ngIf="
+      profileForm.errors &&
+      (profileForm.get('password').touched ||
+        profileForm.get('confirmPassword').touched)
+    "
+  >
+    <span *ngIf="profileForm.errors.passwordsDontMatch"
+      >Passwords must match!</span
+    >
+  </div>
+
+  <div class="p-field p-mb-1 p-col-12">
+    <button
+      icon="pi pi-lock"
+      iconPos="left"
+      pButton
+      type="submit"
+      label="Save changes"
+      class="p-button-help"
+      [disabled]="!profileForm.valid"
+    ></button>
+  </div>
+</form>

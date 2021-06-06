@@ -1,0 +1,126 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap");
+
+@import "../node_modules/primeng/resources/themes/md-light-deeppurple/theme.css";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeflex/primeflex.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #f5f5f5 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #f5f5f5 inset;
+}
+
+.p-dropdown {
+  margin-bottom: 0.2rem;
+}
+
+.bt-error {
+  position: relative;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.bt-table {
+  margin-bottom: 5rem;
+}
+
+.bt-list {
+  list-style: none;
+}
+
+.bt-list li::before {
+  content: "\2022";
+  font-size: 1.15rem;
+  color: #5e38a4;
+  font-weight: bold;
+  display: inline-block;
+  width: 1rem;
+  margin-left: -1rem;
+}
+
+button[disabled]:hover,
+button[disabled] {
+  cursor: not-allowed;
+}
+
+.bt-link--project,
+.bt-link--bug {
+  text-decoration: none;
+  font-weight: bold;
+  color: #000;
+  padding: 1rem 1rem 1rem 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.bt-link--project:hover,
+.bt-link--bug:hover {
+  color: #673ab7;
+}
+
+.project-badge {
+  padding: 0.5rem;
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+}
+.status-inprogress,
+.priority-weak {
+  color: #256029;
+  background-color: #c8e6c9;
+}
+
+.priority-medium {
+  color: #805b36;
+  background-color: #ffd8b2;
+}
+
+.status-done,
+.priority-high {
+  color: #c63737;
+  background-color: #ffcdd2;
+}
+
+/* SPINNER CHART */
+.bt-spinner {
+  width: 5.5rem;
+  height: 5.5rem;
+  stroke: #e7cbec;
+}
+
+.bt-spinner .p-progress-spinner-circle {
+  animation: progress-spinner-dash 1.5s ease-in-out infinite,
+    progress-spinner-color 6s ease-in-out infinite;
+}
+
+@keyframes progress-spinner-color {
+  100%,
+  0% {
+    stroke: #3e1046;
+  }
+  40% {
+    stroke: #6d1b7b;
+  }
+  66% {
+    stroke: #9c27b0;
+  }
+  80%,
+  90% {
+    stroke: #c279ce;
+  }
+}

@@ -1,0 +1,10 @@
+<nav class="bt-nav p-shadow-3">
+  <a routerLink="profile" class="bt-nav--item">My Profile</a>
+  <button
+    pButton
+    label="Logout"
+    icon="pi pi-sign-out"
+    (click)="logoutHandler()"
+  ></button>
+</nav>
+<router-outlet></router-outlet>

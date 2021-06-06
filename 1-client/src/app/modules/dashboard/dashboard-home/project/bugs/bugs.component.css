@@ -1,0 +1,19 @@
+.bt-users {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid black;
+  padding: 0.3rem 0.4rem;
+  margin-right: 0.5rem;
+}
+
+.bt-users:nth-child(odd) {
+  color: #673ab7;
+  border: 2px solid #673ab7;
+}
+.bt-users i {
+  font-size: 1.1rem;
+}
+
+.bt-users:last-child {
+  margin-right: 0;
+}

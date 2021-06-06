@@ -1,0 +1,71 @@
+<p-table
+  [value]="bugs"
+  [paginator]="true"
+  [rows]="5"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} bugs"
+  [rowsPerPageOptions]="[5, 10, 15]"
+  styleClass="bt-table"
+  *ngIf="bugs"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Assigned To</th>
+      <th>Created</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>Edit / Delete</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-bug let-rowIndex="rowIndex">
+    <tr>
+      <td>
+        <a (click)="showAboutBug(bug.id)" class="bt-link--bug">{{
+          bug.name
+        }}</a>
+      </td>
+      <td>{{ bug.description | shorten: 25 }}</td>
+      <td>
+        <span class="bt-users" *ngFor="let user of bug.assignTo"
+          ><i class="pi pi-user" [title]="user"></i
+        ></span>
+      </td>
+      <td>{{ bug.createdAt | date }}</td>
+      <td>
+        <span
+          [class]="'project-badge priority-' + bug.priority.toLowerCase()"
+          >{{ bug.priority }}</span
+        >
+      </td>
+      <td>
+        <span [class]="'project-badge status-' + bug.status">{{
+          bug.status
+        }}</span>
+      </td>
+      <td>
+        <ng-container *ngIf="role !== 'BASIC'; else elseBlock">
+          <app-buttons
+            (edit)="showEditBugModal(bug.id)"
+            (delete)="showDeleteBugModal(bug.id)"
+          ></app-buttons>
+        </ng-container>
+        <ng-template #elseBlock>
+          <ng-container *ngFor="let user of bug.users">
+            <app-buttons
+              (edit)="showEditBugModal(bug.id)"
+              (delete)="showDeleteBugModal(bug.id)"
+              *ngIf="user.Bug_User.userId === userId"
+            ></app-buttons
+          ></ng-container>
+        </ng-template>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="p-d-flex p-ai-center p-jc-between">
+      In total there are {{ bugs ? bugs.length : 0 }} bugs.
+    </div>
+  </ng-template>
+</p-table>

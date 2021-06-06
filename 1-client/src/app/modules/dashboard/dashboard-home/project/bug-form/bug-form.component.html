@@ -1,0 +1,108 @@
+<form
+  [formGroup]="bugForm"
+  (ngSubmit)="onSubmit()"
+  class="p-fluid p-grid p-col-12 p-xl-6 p-xl-offset-3"
+>
+  <div class="p-col p-offset-11 p-mt-3">
+    <button
+      pButton
+      pRipple
+      type="button"
+      (click)="closeDialog()"
+      icon="pi pi-times"
+      class="p-button-rounded p-button-primary p-button-text"
+    ></button>
+  </div>
+
+  <h2 class="p-col-12">{{ header }}</h2>
+  <div class="p-field p-col-12">
+    <h5>Bug Name</h5>
+    <input type="text" pInputText formControlName="name" maxlength="30" />
+    <app-input-errors
+      [control]="bugForm.get('name')"
+      label="Bug Name"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-col-12">
+    <h5>Assign To</h5>
+    <p-multiSelect
+      [options]="users"
+      formControlName="assignTo"
+      placeholder="Assign to Users"
+    ></p-multiSelect>
+    <app-input-errors
+      [control]="bugForm.get('assignTo')"
+      label="Assign"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-col-12">
+    <h5>Priority</h5>
+    <p-dropdown
+      [options]="priority"
+      formControlName="priority"
+      placeholder="Select a Priority"
+      [showClear]="true"
+    ></p-dropdown>
+    <app-input-errors
+      [control]="bugForm.get('priority')"
+      label="Priority"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-col-12">
+    <h5>Description</h5>
+    <textarea
+      formControlName="description"
+      [rows]="5"
+      [cols]="30"
+      pInputTextarea
+      autoResize="autoResize"
+    ></textarea>
+    <app-input-errors
+      [control]="bugForm.get('description')"
+      label="Description"
+    ></app-input-errors>
+  </div>
+
+  <div class="p-field p-col-12" *ngIf="mode === 'edit'">
+    <h5>Status</h5>
+    <div class="p-field-radiobutton">
+      <p-radioButton
+        name="status"
+        value="inprogress"
+        inputId="status1"
+        formControlName="status"
+      ></p-radioButton>
+      <label for="status1">In progress</label>
+    </div>
+    <div class="p-field-radiobutton">
+      <p-radioButton
+        name="status"
+        value="done"
+        inputId="status2"
+        formControlName="status"
+      ></p-radioButton>
+      <label for="status2">Done</label>
+    </div>
+  </div>
+
+  <div class="p-field p-col-12 p-d-flex">
+    <button
+      pButton
+      type="submit"
+      [disabled]="bugForm.invalid"
+      [label]="buttonLabel"
+      icon="pi pi-check"
+      class="p-button-lg p-mr-2"
+    ></button>
+    <button
+      pButton
+      (click)="closeDialog()"
+      type="button"
+      label="Close"
+      class="p-button-outlined p-button-lg p-ml-2"
+    ></button>
+  </div>
+</form>

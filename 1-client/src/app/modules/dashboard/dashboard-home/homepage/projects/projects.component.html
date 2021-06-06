@@ -1,0 +1,51 @@
+<p-table
+  [value]="projects"
+  [paginator]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} projects"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  styleClass="bt-table"
+  *ngIf="projects"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Created</th>
+      <th>Status</th>
+      <th *ngIf="role !== 'BASIC'">Edit / Delete</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-project>
+    <tr>
+      <td>
+        <a
+          [routerLink]="'/dashboard/project/' + project.id"
+          class="bt-link--project"
+          >{{ project.name }}</a
+        >
+      </td>
+      <td>{{ project.category }}</td>
+      <td>{{ project.description | shorten: 25 }}</td>
+      <td>{{ project.createdAt | date }}</td>
+      <td>
+        <span [class]="'project-badge status-' + project.status">{{
+          project.status
+        }}</span>
+      </td>
+      <td *ngIf="role !== 'BASIC'">
+        <app-buttons
+          (edit)="showEditModal(project.id)"
+          (delete)="showDeleteModal(project.id)"
+        ></app-buttons>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="p-d-flex p-ai-center p-jc-between">
+      In total there are {{ projects ? projects.length : 0 }} projects.
+    </div>
+  </ng-template>
+</p-table>

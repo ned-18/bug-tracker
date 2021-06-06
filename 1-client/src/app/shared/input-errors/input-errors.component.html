@@ -1,0 +1,19 @@
+<ng-container class="p-grid" *ngIf="showErrors">
+  <div class="p-error bt-error" *ngIf="control.errors.required">
+    {{ label }} is required.
+  </div>
+  <div class="p-error bt-error" *ngIf="control.errors.minlength">
+    {{ label }} must be at least
+    {{ control.errors.minlength.requiredLength }}
+    characters.
+  </div>
+  <div class="p-error bt-error" *ngIf="control.errors.passwordIsNotValid">
+    {{ label }} is not valid. Check password policy.
+  </div>
+  <div class="p-error bt-error" *ngIf="control.errors.emailIsNotValid">
+    Please enter valid {{ label | lowercase }}. E.g. email@email.com
+  </div>
+</ng-container>
+<ng-container class="p-grid" *ngIf="existingField && !control.errors">
+  <div class="p-error bt-error">{{ existingField }}</div>
+</ng-container>

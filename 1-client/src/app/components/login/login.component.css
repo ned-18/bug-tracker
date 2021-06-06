@@ -1,0 +1,11 @@
+.bt-link {
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: #5e38a4;
+  transition: 0.3s;
+}
+
+.bt-link:hover {
+  color: #a68ad9;
+}
